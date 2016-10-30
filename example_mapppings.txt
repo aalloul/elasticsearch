@@ -1,0 +1,217 @@
+PUT /_template/example_template
+{
+   "template": "example-*",
+   "settings": {
+      "index": {
+         "number_of_shards": "6",
+         "number_of_replicas": "0",
+         "refresh_interval": "10s",
+         "routing.allocation.include.zone" : "hot",
+         "analysis": {
+            "char_filter" : {
+               "repl_dot" : {
+                  "type" : "mapping",
+                  "mappings" : [".=>\\u0020", "\\uFFFD=>\\u0020"]
+               },
+               "repl_dot_" : {
+                  "type" : "mapping",
+                  "mappings" : ["_=>\\u0020", ".=>\\u0020", "\\uFFFD=>\\u0020"]
+               }
+            },   
+            "filter": {
+               "subfield1": {
+                  "type": "pattern_capture",
+                  "preserve_original": "0",
+                  "patterns": [
+                     "^[^\\|]*\\|([^\\|]*)"
+                  ]
+               },
+               "subfield0": {
+                  "type": "pattern_capture",
+                  "preserve_original": "0",
+                  "patterns": [
+                     "^([^\\|]*)"
+                  ]
+               }
+            },
+            "analyzer": {
+               "lc_keyword": {
+                  "alias": ["default_search", "default_index"],
+                  "filter": ["asciifolding", "lowercase"],
+                  "tokenizer": "keyword"
+               },
+               "lc_text": {
+                  "char_filter" : ["repl_dot"],
+                  "filter": ["asciifolding", "lowercase"],
+                  "tokenizer": "standard"
+               },
+               "lc_text_": {
+                  "char_filter" : ["repl_dot_"],
+                  "filter": ["asciifolding", "lowercase"],
+                  "tokenizer": "standard"
+               }
+            }
+         }
+      }
+   },
+   "mappings": {
+      "events": {
+         "dynamic": true, 
+         "_all": { "enabled": "false" },
+         "dynamic_templates": [
+            {
+               "headers": {
+                  "mapping": {
+                     "index": "no",
+                     "type": "string"
+                  },
+                  "match_mapping_type": "string",
+                  "path_match": "headers.*"
+               }
+            },
+            {
+               "template_1": {
+                  "mapping": {
+                     "index": "not_analyzed",
+                     "index_options": "docs",
+                     "norms": {"enabled": false},
+                     "type": "string"
+                  },
+                  "match_mapping_type": "string",
+                  "match": "*"
+               }
+            }
+         ],
+         "properties": {
+            "headers": {
+               "enabled": false,
+               "type": "object"
+            },
+             "reingestion": {
+               "index": "not_analyzed",
+               "norms": {"enabled": false},
+               "type": "string",
+               "doc_values": false
+             },
+             "_ingested": {
+               "format": "strict_date_optional_time||epoch_millis",
+               "index_options": "docs",
+               "type": "date",
+               "doc_values": false
+             },
+             "_ts": {
+               "index": "no",
+               "type": "string"
+             },
+             "_tsunit": {
+               "index": "not_analyzed",
+               "index_options": "docs",
+               "norms": {"enabled": false },
+               "type": "string",
+               "doc_values": false
+             },
+             "deviceID": {
+               "type": "string",
+               "index": "not_analyzed",
+               "norms": {"enabled": false},
+               "index_options": "docs"
+             },
+             "hwVersion": {
+               "type": "string",
+               "index": "not_analyzed",
+               "norms": {"enabled": false},
+               "index_options": "docs"
+             },
+             "loggerversion": {
+               "type": "string",
+               "index": "not_analyzed",
+               "norms": {"enabled": false},
+               "index_options": "docs"
+             },
+             "swVersion": {
+               "type": "string",
+               "index": "not_analyzed",
+               "norms": {"enabled": false},
+               "index_options": "docs"
+             },
+             "errorCode": {
+               "type": "string",
+               "index": "not_analyzed",
+               "norms": {"enabled": false},
+               "index_options": "docs"
+             },
+             "ts": {
+               "type": "date",
+               "index_options": "docs",
+               "format": "strict_date_optional_time||epoch_millis"
+             },
+             "ONID": {
+               "type": "integer",
+               "index_options": "docs"
+             },
+             "SID": {
+               "type": "integer",
+               "index_options": "docs"
+             },
+             "TSID": {
+               "type": "integer",
+               "index_options": "docs"
+             },
+             "srcONID": {
+               "type": "integer",
+               "index_options": "docs"
+             },
+             "srcSID": {
+               "type": "integer",
+               "index_options": "docs"
+             },
+             "srcTSID": {
+               "type": "integer",
+               "index_options": "docs"
+             },
+             "clicksCount": {
+               "type": "integer",
+               "index_options": "docs"
+             },
+             "activityID": {
+               "type": "long",
+               "index_options": "docs"
+             },
+             "subActivityID": {
+               "type": "long",
+               "index_options": "docs"
+             },
+             "triggerTS": {
+               "type": "long",
+               "index_options": "docs"
+             },
+             "eventType": {
+               "type": "integer",
+               "index_options": "docs"
+             },
+             "offset": {
+               "type": "integer",
+               "index_options": "docs"
+             },
+             "position": {
+               "type": "integer",
+               "index_options": "docs"
+             },
+             "type": {
+               "type": "integer",
+               "index_options": "docs"
+             },
+             "Duration": {
+               "type": "long",
+               "index_options": "docs"
+             },
+             "fromPeche": {
+               "norms": {"enabled": false },
+               "index": "not_analyzed",
+               "index_options": "docs",
+               "type": "string"
+            }
+         }
+      }
+   }
+}
