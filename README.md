@@ -1,2 +1,2 @@
 # elasticsearch
-Elasticsearch configuration
+This repo should contain all the Elasticsearch configuration, mappings and indices
