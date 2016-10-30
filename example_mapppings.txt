@@ -1,4 +1,10 @@
-PUT /_template/example_template
+#### 
+# Don't copy this
+# the "example-*" should be replaced by the index name (e.g. "postman-*")
+# the "PUT ... " is the command to send to elasticsearch to create a new template
+# what needs to be changed starts at the field 'reingestion'
+######
+PUT /_template/example_template 
 {
    "template": "example-*",
    "settings": {
