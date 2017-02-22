@@ -1,0 +1,152 @@
+{
+  "template": "userbase-*",
+  "settings": {
+    "index": {
+      "number_of_shards": "6",
+      "number_of_replicas": "0",
+      "refresh_interval": "10s"
+    }
+  },
+  "mappings": {
+    "events": {
+      "dynamic": true,
+      "_all": { "enabled": "false" },
+      "dynamic_templates": [
+        {
+          "headers": {
+            "mapping": {
+              "index": "yes",
+              "type": "keyword"
+            },
+            "match_mapping_type": "keyword",
+            "path_match": "headers.*"
+          }
+        },
+        {
+          "template_1": {
+            "mapping": {
+              "index": "not_analyzed",
+              "index_options": "docs",
+              "norms": {"enabled": false},
+              "type": "keyword"
+            },
+            "match_mapping_type": "keyword",
+            "match": "*"
+          }
+        }
+      ],
+      "properties": {
+        "headers": {
+          "enabled": true,
+          "type": "object"
+        },
+        "userSurName":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "userFirstName":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "userPicture":{
+          "type": "binary",
+          "doc_values": false,
+          "store": true
+        },
+        "userPhoneNumber":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "userNPromptsToRegister":{
+          "type": "integer",
+          "index": true,
+          "index_options": "docs"
+        },
+        "travels_by":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "user_comment":{
+          "type": "text",
+          "index": true,
+          "index_options": "docs"
+        }
+
+      }
+    },
+    "tests": {
+      "dynamic": true,
+      "_all": { "enabled": "false" },
+      "dynamic_templates": [
+        {
+          "headers": {
+            "mapping": {
+              "index": "yes",
+              "type": "keyword"
+            },
+            "match_mapping_type": "keyword",
+            "path_match": "headers.*"
+          }
+        },
+        {
+          "template_1": {
+            "mapping": {
+              "index": "not_analyzed",
+              "index_options": "docs",
+              "norms": {"enabled": false},
+              "type": "keyword"
+            },
+            "match_mapping_type": "keyword",
+            "match": "*"
+          }
+        }
+      ],
+      "properties": {
+        "headers": {
+          "enabled": true,
+          "type": "object"
+        },
+        "userSurName":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "userFirstName":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "userPicture":{
+          "type": "binary",
+          "doc_values": false,
+          "store": true
+        },
+        "userPhoneNumber":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "userNPromptsToRegister":{
+          "type": "integer",
+          "index": true,
+          "index_options": "docs"
+        },
+        "travels_by":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "user_comment":{
+          "type": "text",
+          "index": true,
+          "index_options": "docs"
+        }
+
+      }
+    }
+  }
+}

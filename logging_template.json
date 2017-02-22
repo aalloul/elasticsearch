@@ -1,0 +1,444 @@
+{
+  "template": "logging-*",
+  "settings": {
+    "index": {
+      "number_of_shards": "6",
+      "number_of_replicas": "0",
+      "refresh_interval": "10s"
+    }
+  },
+  "mappings": {
+    "events": {
+      "dynamic": true,
+      "_all": { "enabled": "false" },
+      "dynamic_templates": [
+        {
+          "headers": {
+            "mapping": {
+              "index": "yes",
+              "type": "keyword"
+            },
+            "match_mapping_type": "keyword",
+            "path_match": "headers.*"
+          }
+        },
+        {
+          "template_1": {
+            "mapping": {
+              "index": "not_analyzed",
+              "index_options": "docs",
+              "norms": {"enabled": false},
+              "type": "keyword"
+            },
+            "match_mapping_type": "keyword",
+            "match": "*"
+          }
+        }
+      ],
+      "properties": {
+        "headers": {
+          "enabled": true,
+          "type": "object"
+        },
+        "activity_name": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "activity_start": {
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "deviceid":{
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "fragName": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "fragActions": {
+          "type":"nested",
+          "dynamic":true,
+          "properties":{
+            "userAddress": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "userState": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "pickup_location_edited": {
+              "type": "boolean",
+              "index": true,
+              "index_options": "docs"
+            },
+            "userCity": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "userLatLong": {
+              "type": "geo_point",
+              "index": true,
+              "index_options": "docs"
+            },
+            "nextFrag": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "drop_off_latlong": {
+              "type": "geo_point",
+              "index": true,
+              "index_options": "docs"
+            },
+            "drop_off_address": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "number_packages": {
+              "type": "integer",
+              "index": true,
+              "index_options": "docs"
+            },
+            "drop_off_city": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "userPostalCode": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "drop_off_postalcode": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "fragEnd": {
+              "type": "date",
+              "index_options": "docs",
+              "format": "strict_date_optional_time||epoch_millis"
+            },
+            "drop_off_country": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "fragActions": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "fragStart": {
+              "type": "date",
+              "index_options": "docs",
+              "format": "strict_date_optional_time||epoch_millis"
+            },
+            "fragDuration": {
+              "type": "long",
+              "index": true,
+              "index_options": "docs"
+            },
+            "userCountry": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "size_packages": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "date_for_pickup": {
+              "type": "date",
+              "index_options": "docs",
+              "doc_values":true,
+              "format": "yyyy-MM-dd"
+            },
+            "actionError":{
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "userSurName":{
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "userFirstName":{
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "userPicture":{
+              "type": "binary",
+              "doc_values": false,
+              "store": true
+            },
+            "userPhoneNumber":{
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "userNPromptsToRegister":{
+              "type": "integer",
+              "index": true,
+              "index_options": "docs"
+            },
+            "travels_by":{
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "user_comment":{
+              "type": "text",
+              "index": true,
+              "index_options": "docs"
+            }
+          }
+        },
+        "sID": {
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "sessDuration":{
+          "type": "long",
+          "index": true,
+          "index_options": "docs"
+        },
+        "left_on_fragment":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        }
+      }
+    },
+    "tests": {
+      "dynamic": true,
+      "_all": { "enabled": "false" },
+      "dynamic_templates": [
+        {
+          "headers": {
+            "mapping": {
+              "index": "yes",
+              "type": "keyword"
+            },
+            "match_mapping_type": "keyword",
+            "path_match": "headers.*"
+          }
+        },
+        {
+          "template_1": {
+            "mapping": {
+              "index": "not_analyzed",
+              "index_options": "docs",
+              "norms": {"enabled": false},
+              "type": "keyword"
+            },
+            "match_mapping_type": "keyword",
+            "match": "*"
+          }
+        }
+      ],
+      "properties": {
+        "headers": {
+          "enabled": true,
+          "type": "object"
+        },
+        "activity_name": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "activity_start": {
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "deviceid":{
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "fragName": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "fragActions": {
+          "type":"nested",
+          "dynamic":true,
+          "properties":{
+            "userAddress": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "userState": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "pickup_location_edited": {
+              "type": "boolean",
+              "index": true,
+              "index_options": "docs"
+            },
+            "userCity": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "userLatLong": {
+              "type": "geo_point",
+              "index": true,
+              "index_options": "docs"
+            },
+            "nextFrag": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "drop_off_latlong": {
+              "type": "geo_point",
+              "index": true,
+              "index_options": "docs"
+            },
+            "drop_off_address": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "number_packages": {
+              "type": "integer",
+              "index": true,
+              "index_options": "docs"
+            },
+            "drop_off_city": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "userPostalCode": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "drop_off_postalcode": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "fragEnd": {
+              "type": "date",
+              "index_options": "docs",
+              "format": "strict_date_optional_time||epoch_millis"
+            },
+            "drop_off_country": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "fragActions": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "fragStart": {
+              "type": "date",
+              "index_options": "docs",
+              "format": "strict_date_optional_time||epoch_millis"
+            },
+            "fragDuration": {
+              "type": "long",
+              "index": true,
+              "index_options": "docs"
+            },
+            "userCountry": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "size_packages": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "date_for_pickup": {
+              "type": "date",
+              "index_options": "docs",
+              "doc_values":true,
+              "format": "yyyy-MM-dd"
+            },
+            "actionError":{
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "userSurName":{
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "userFirstName":{
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "userPicture":{
+              "type": "binary",
+              "doc_values": false,
+              "store": true
+            },
+            "userPhoneNumber":{
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "userNPromptsToRegister":{
+              "type": "integer",
+              "index": true,
+              "index_options": "docs"
+            },
+            "travels_by":{
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "user_comment":{
+              "type": "text",
+              "index": true,
+              "index_options": "docs"
+            }
+          }
+        },
+        "sID": {
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "sessDuration":{
+          "type": "long",
+          "index": true,
+          "index_options": "docs"
+        },
+        "left_on_fragment":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        }
+      }
+    }
+  }
+}
