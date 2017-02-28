@@ -1,0 +1,302 @@
+{
+  "template": "offers-*",
+  "settings": {
+    "index": {
+      "number_of_shards": "6",
+      "number_of_replicas": "0",
+      "refresh_interval": "10s"
+    }
+  },
+  "mappings": {
+    "events": {
+      "dynamic": true,
+      "_all": { "enabled": "false" },
+      "dynamic_templates": [
+        {
+          "headers": {
+            "mapping": {
+              "index": "yes",
+              "type": "keyword"
+            },
+            "match_mapping_type": "keyword",
+            "path_match": "headers.*"
+          }
+        },
+        {
+          "template_1": {
+            "mapping": {
+              "index": "not_analyzed",
+              "index_options": "docs",
+              "norms": {"enabled": false},
+              "type": "keyword"
+            },
+            "match_mapping_type": "keyword",
+            "match": "*"
+          }
+        }
+      ],
+      "properties": {
+        "headers": {
+          "enabled": true,
+          "type": "object"
+        },
+        "userSurName":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "userFirstName":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "userPicture":{
+          "type": "binary",
+          "doc_values": false,
+          "store": true
+        },
+        "userPhoneNumber":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "travels_by":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "user_comment":{
+          "type": "text",
+          "index": true,
+          "index_options": "docs"
+        },
+        "pickup_city":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "pickup_country":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "pickup_date":{
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "pickup_postalcode":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "userAddress":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "userlatlong":{
+          "type": "geo_point"
+        },
+        "userLongitude":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "userState":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "drop_off_latlong":{
+          "type": "geo_point"
+        },
+        "drop_off_address":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "drop_off_city":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "drop_off_country":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "drop_off_date":{
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "drop_off_postalcode":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "drop_off_state":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "number_packages":{
+          "type": "integer",
+          "index": true,
+          "index_options": "docs"
+        },
+        "size_packages":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        }
+      }
+    },
+    "tests": {
+      "dynamic": true,
+      "_all": { "enabled": "false" },
+      "dynamic_templates": [
+        {
+          "headers": {
+            "mapping": {
+              "index": "yes",
+              "type": "keyword"
+            },
+            "match_mapping_type": "keyword",
+            "path_match": "headers.*"
+          }
+        },
+        {
+          "template_1": {
+            "mapping": {
+              "index": "not_analyzed",
+              "index_options": "docs",
+              "norms": {"enabled": false},
+              "type": "keyword"
+            },
+            "match_mapping_type": "keyword",
+            "match": "*"
+          }
+        }
+      ],
+      "properties": {
+        "headers": {
+          "enabled": true,
+          "type": "object"
+        },
+        "userSurName":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "userFirstName":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "userPicture":{
+          "type": "binary",
+          "doc_values": false,
+          "store": true
+        },
+        "userPhoneNumber":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "travels_by":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "user_comment":{
+          "type": "text",
+          "index": true,
+          "index_options": "docs"
+        },
+        "pickup_city":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "pickup_country":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "pickup_date":{
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "pickup_postalcode":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "userAddress":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "userlatlong":{
+          "type": "geo_point"
+        },
+        "userLongitude":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "userState":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "drop_off_latlong":{
+          "type": "geo_point"
+        },
+        "drop_off_address":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "drop_off_city":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "drop_off_country":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "drop_off_date":{
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "drop_off_postalcode":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "drop_off_state":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "number_packages":{
+          "type": "integer",
+          "index": true,
+          "index_options": "docs"
+        },
+        "size_packages":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        }
+      }
+    }
+  }
+}
