@@ -50,10 +50,30 @@
           "index_options": "docs",
           "format": "strict_date_optional_time||epoch_millis"
         },
-        "deviceid":{
+        "deviceID":{
+          "type": "keyword",
+          "index":true,
+          "index_options": "docs"
+        },
+        "deviceType":{
+          "type": "keyword",
+          "index":true,
+          "index_options": "docs"
+        },
+        "requestArrived":{
           "type": "date",
           "index_options": "docs",
           "format": "strict_date_optional_time||epoch_millis"
+        },
+        "requestTime":{
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "requestFlightTime":{
+          "type":"integer",
+          "index_options":"docs",
+          "index": true
         },
         "fragName": {
           "type": "keyword",
@@ -64,32 +84,32 @@
           "type":"nested",
           "dynamic":true,
           "properties":{
-            "userAddress": {
+            "pickup_address": {
               "type": "keyword",
               "index": true,
               "index_options": "docs"
             },
-            "userState": {
+            "pickup_state": {
               "type": "keyword",
               "index": true,
               "index_options": "docs"
             },
-            "pickup_location_edited": {
-              "type": "boolean",
-              "index": true,
-              "index_options": "docs"
-            },
-            "userCity": {
+            "pickup_city": {
               "type": "keyword",
               "index": true,
               "index_options": "docs"
             },
-            "userLatLong": {
+            "pickup_latlong": {
               "type": "geo_point",
               "index": true,
               "index_options": "docs"
             },
-            "nextFrag": {
+            "pickup_postalCode": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "pickup_country": {
               "type": "keyword",
               "index": true,
               "index_options": "docs"
@@ -104,23 +124,33 @@
               "index": true,
               "index_options": "docs"
             },
-            "number_packages": {
-              "type": "integer",
-              "index": true,
-              "index_options": "docs"
-            },
             "drop_off_city": {
               "type": "keyword",
               "index": true,
               "index_options": "docs"
             },
-            "userPostalCode": {
+            "drop_off_postalCode": {
               "type": "keyword",
               "index": true,
               "index_options": "docs"
             },
-            "drop_off_postalcode": {
+            "drop_off_country": {
               "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "user_edited_location": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "nextFrag": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "number_packages": {
+              "type": "integer",
               "index": true,
               "index_options": "docs"
             },
@@ -128,11 +158,6 @@
               "type": "date",
               "index_options": "docs",
               "format": "strict_date_optional_time||epoch_millis"
-            },
-            "drop_off_country": {
-              "type": "keyword",
-              "index": true,
-              "index_options": "docs"
             },
             "fragActions": {
               "type": "keyword",
@@ -149,21 +174,15 @@
               "index": true,
               "index_options": "docs"
             },
-            "userCountry": {
-              "type": "keyword",
-              "index": true,
-              "index_options": "docs"
-            },
             "size_packages": {
-              "type": "keyword",
+              "type": "integer",
               "index": true,
               "index_options": "docs"
             },
-            "date_for_pickup": {
+            "pickup_date": {
               "type": "date",
               "index_options": "docs",
-              "doc_values":true,
-              "format": "yyyy-MM-dd"
+              "format": "strict_date_optional_time||epoch_millis"
             },
             "actionError":{
               "type": "keyword",
@@ -190,7 +209,7 @@
               "index": true,
               "index_options": "docs"
             },
-            "userNPromptsToRegister":{
+            "n_prompts_registration":{
               "type": "integer",
               "index": true,
               "index_options": "docs"
@@ -266,10 +285,30 @@
           "index_options": "docs",
           "format": "strict_date_optional_time||epoch_millis"
         },
-        "deviceid":{
+        "deviceID":{
+          "type": "keyword",
+          "index":true,
+          "index_options": "docs"
+        },
+        "deviceType":{
+          "type": "keyword",
+          "index":true,
+          "index_options": "docs"
+        },
+        "requestArrived":{
           "type": "date",
           "index_options": "docs",
           "format": "strict_date_optional_time||epoch_millis"
+        },
+        "requestTime":{
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "requestFlightTime":{
+          "type":"integer",
+          "index_options":"docs",
+          "index": true
         },
         "fragName": {
           "type": "keyword",
@@ -280,32 +319,32 @@
           "type":"nested",
           "dynamic":true,
           "properties":{
-            "userAddress": {
+            "pickup_address": {
               "type": "keyword",
               "index": true,
               "index_options": "docs"
             },
-            "userState": {
+            "pickup_state": {
               "type": "keyword",
               "index": true,
               "index_options": "docs"
             },
-            "pickup_location_edited": {
-              "type": "boolean",
-              "index": true,
-              "index_options": "docs"
-            },
-            "userCity": {
+            "pickup_city": {
               "type": "keyword",
               "index": true,
               "index_options": "docs"
             },
-            "userLatLong": {
+            "pickup_latlong": {
               "type": "geo_point",
               "index": true,
               "index_options": "docs"
             },
-            "nextFrag": {
+            "pickup_postalCode": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "pickup_country": {
               "type": "keyword",
               "index": true,
               "index_options": "docs"
@@ -320,23 +359,33 @@
               "index": true,
               "index_options": "docs"
             },
-            "number_packages": {
-              "type": "integer",
-              "index": true,
-              "index_options": "docs"
-            },
             "drop_off_city": {
               "type": "keyword",
               "index": true,
               "index_options": "docs"
             },
-            "userPostalCode": {
+            "drop_off_postalCode": {
               "type": "keyword",
               "index": true,
               "index_options": "docs"
             },
-            "drop_off_postalcode": {
+            "drop_off_country": {
               "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "user_edited_location": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "nextFrag": {
+              "type": "keyword",
+              "index": true,
+              "index_options": "docs"
+            },
+            "number_packages": {
+              "type": "integer",
               "index": true,
               "index_options": "docs"
             },
@@ -344,11 +393,6 @@
               "type": "date",
               "index_options": "docs",
               "format": "strict_date_optional_time||epoch_millis"
-            },
-            "drop_off_country": {
-              "type": "keyword",
-              "index": true,
-              "index_options": "docs"
             },
             "fragActions": {
               "type": "keyword",
@@ -365,21 +409,15 @@
               "index": true,
               "index_options": "docs"
             },
-            "userCountry": {
-              "type": "keyword",
-              "index": true,
-              "index_options": "docs"
-            },
             "size_packages": {
-              "type": "keyword",
+              "type": "integer",
               "index": true,
               "index_options": "docs"
             },
-            "date_for_pickup": {
+            "pickup_date": {
               "type": "date",
               "index_options": "docs",
-              "doc_values":true,
-              "format": "yyyy-MM-dd"
+              "format": "strict_date_optional_time||epoch_millis"
             },
             "actionError":{
               "type": "keyword",
@@ -406,7 +444,7 @@
               "index": true,
               "index_options": "docs"
             },
-            "userNPromptsToRegister":{
+            "n_prompts_registration":{
               "type": "integer",
               "index": true,
               "index_options": "docs"

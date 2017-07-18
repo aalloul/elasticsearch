@@ -40,6 +40,26 @@
           "enabled": true,
           "type": "object"
         },
+        "requestArrived":{
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "requestTime":{
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "requestFlightTime":{
+          "type":"integer",
+          "index_options":"docs",
+          "index": true
+        },
+        "deviceID":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
         "userSurName":{
           "type": "keyword",
           "index": true,
@@ -51,9 +71,10 @@
           "index_options": "docs"
         },
         "userPicture":{
-          "type": "binary",
+          "type": "keyword",
           "doc_values": false,
-          "store": true
+          "index": false,
+          "store":false
         },
         "userPhoneNumber":{
           "type": "keyword",
@@ -85,25 +106,20 @@
           "index_options": "docs",
           "format": "strict_date_optional_time||epoch_millis"
         },
-        "pickup_postalcode":{
+        "pickup_postalCode":{
           "type": "keyword",
           "index": true,
           "index_options": "docs"
         },
-        "userAddress":{
+        "pickup_address":{
           "type": "keyword",
           "index": true,
           "index_options": "docs"
         },
-        "userlatlong":{
+        "pickup_latlong":{
           "type": "geo_point"
         },
-        "userLongitude":{
-          "type": "keyword",
-          "index": true,
-          "index_options": "docs"
-        },
-        "userState":{
+        "pickup_state":{
           "type": "keyword",
           "index": true,
           "index_options": "docs"
@@ -131,7 +147,7 @@
           "index_options": "docs",
           "format": "strict_date_optional_time||epoch_millis"
         },
-        "drop_off_postalcode":{
+        "drop_off_postalCode":{
           "type": "keyword",
           "index": true,
           "index_options": "docs"
@@ -147,7 +163,7 @@
           "index_options": "docs"
         },
         "size_packages":{
-          "type": "keyword",
+          "type": "integer",
           "index": true,
           "index_options": "docs"
         }
@@ -185,6 +201,26 @@
           "enabled": true,
           "type": "object"
         },
+        "deviceID":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "requestArrived":{
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "requestTime":{
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "requestFlightTime":{
+          "type":"integer",
+          "index_options":"docs",
+          "index": true
+        },
         "userSurName":{
           "type": "keyword",
           "index": true,
@@ -196,9 +232,10 @@
           "index_options": "docs"
         },
         "userPicture":{
-          "type": "binary",
+          "type": "keyword",
           "doc_values": false,
-          "store": true
+          "store": false,
+          "index": false
         },
         "userPhoneNumber":{
           "type": "keyword",
@@ -230,25 +267,20 @@
           "index_options": "docs",
           "format": "strict_date_optional_time||epoch_millis"
         },
-        "pickup_postalcode":{
+        "pickup_postalCode":{
           "type": "keyword",
           "index": true,
           "index_options": "docs"
         },
-        "userAddress":{
+        "pickup_address":{
           "type": "keyword",
           "index": true,
           "index_options": "docs"
         },
-        "userlatlong":{
+        "pickup_latlong":{
           "type": "geo_point"
         },
-        "userLongitude":{
-          "type": "keyword",
-          "index": true,
-          "index_options": "docs"
-        },
-        "userState":{
+        "pickup_state":{
           "type": "keyword",
           "index": true,
           "index_options": "docs"
@@ -276,7 +308,7 @@
           "index_options": "docs",
           "format": "strict_date_optional_time||epoch_millis"
         },
-        "drop_off_postalcode":{
+        "drop_off_postalCode":{
           "type": "keyword",
           "index": true,
           "index_options": "docs"
@@ -292,7 +324,7 @@
           "index_options": "docs"
         },
         "size_packages":{
-          "type": "keyword",
+          "type": "integer",
           "index": true,
           "index_options": "docs"
         }

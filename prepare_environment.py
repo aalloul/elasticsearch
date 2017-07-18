@@ -1,56 +1,43 @@
 #!/usr/bin/env python
-import requests
-import json
+
+from elasticsearch import Elasticsearch, helpers, RequestsHttpConnection, client
+from json import loads, dumps
+from requests_aws4auth import AWS4Auth
 
 ##########
 # Cluster settings
 
-ip = "http://192.168.178.206:9200"
-
+ip = "https://search-shippy-es-f5eynamiumiunz5mrdxxmodksu.eu-west-1.es.amazonaws.com"
+theport = 80
+ACCESS_KEY = "AKIAIAOZRRLDX37HKW4Q"
+SECRET_KEY = "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"
+REGION = "eu-west-1"
+host = 'search-shippy-es-f5eynamiumiunz5mrdxxmodksu.eu-west-1.es.amazonaws.com'
+awsauth = AWS4Auth(ACCESS_KEY, SECRET_KEY, REGION, 'es')
 #########
 
-print "Create logging template"
-infile = open("logging_template.json","r")
-content = json.dumps(json.loads(infile.read()))
+# Establish the connection
+es = Elasticsearch(
+    hosts=[{'host': host, 'port': theport}],
+    http_auth=awsauth,
+    connection_class=RequestsHttpConnection
+)
 
-r = requests.delete(ip+"/_template/logging_template")
-if (r.status_code > 300):
-    print "delete status is %s, reason is %s" % (r.status_code, r.reason)
+index_client = client.IndicesClient(es)
+print ("Create logging template")
 
-r = requests.put(ip+"/_template/logging_template", data=content)
-if (r.status_code > 300):
-    print "status is %s, reason is %s" % (r.status_code, r.reason)
-else:
-    print "  -> OK"
-infile.close()
+print ("1- Logging data template")
+with open("logging_template.json","r") as infile:
+    content = loads(infile.read())
+    res = index_client.put_template(name = "logging-template", body = content)
+    print (res)
 
-
-print "Create userbase template"
-r = requests.delete(ip+"/_template/userbase_template")
-if (r.status_code > 300):
-    print "delete status is %s, reason is %s" % (r.status_code, r.reason)
-
-infile = open("template_userbase.json", "r")
-content = json.dumps(json.loads(infile.read()))
-r = requests.put(ip+"/_template/userbase_template", data=content)
-if (r.status_code > 300):
-    print "status is %s, reason is %s" % (r.status_code, r.reason)
-else:
-    print "  -> OK"
+print ("1- Offer data template")
+with open("template_offerdata.json", "r") as infile:
+    content = loads(infile.read())
+    res = index_client.put_template(name = "offer-template", body = content)
+    print (res)
 
 infile.close()
 
-print "Create offerdata template"
-r = requests.delete(ip+"/_template/offerdata_userbase")
-if (r.status_code > 300):
-    print "delete status is %s, reason is %s" % (r.status_code, r.reason)
-
-infile = open("template_offerdata.json", "r")
-content = json.dumps(json.loads(infile.read()))
-r = requests.put(ip+"/_template/offerdata_userbase", data=content)
-if (r.status_code > 300):
-    print "status is %s, reason is %s" % (r.status_code, r.reason)
-else:
-    print "  -> OK"
-
-infile.close()
+print (" Done ")
