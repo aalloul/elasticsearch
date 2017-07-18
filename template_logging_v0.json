@@ -1,5 +1,5 @@
 {
-  "template": "logging-*",
+  "template": "logging-2*",
   "settings": {
     "index": {
       "number_of_shards": "6",

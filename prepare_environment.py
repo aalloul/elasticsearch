@@ -27,13 +27,13 @@ index_client = client.IndicesClient(es)
 print ("Create logging template")
 
 print ("1- Logging data template")
-with open("logging_template.json","r") as infile:
+with open("template_logging_v0.json","r") as infile:
     content = loads(infile.read())
     res = index_client.put_template(name = "logging-template", body = content)
     print (res)
 
 print ("1- Offer data template")
-with open("template_offerdata.json", "r") as infile:
+with open("template_offer_v0.json", "r") as infile:
     content = loads(infile.read())
     res = index_client.put_template(name = "offer-template", body = content)
     print (res)

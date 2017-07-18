@@ -1,0 +1,392 @@
+{
+  "template": "logging-0.1-*",
+  "settings": {
+    "index": {
+      "number_of_shards": "6",
+      "number_of_replicas": "0",
+      "refresh_interval": "10s"
+    }
+  },
+  "mappings": {
+    "events": {
+      "dynamic": true,
+      "_all": {
+        "enabled": "false"
+      },
+      "dynamic_templates": [
+        {
+          "headers": {
+            "mapping": {
+              "index": "yes",
+              "type": "keyword"
+            },
+            "match_mapping_type": "keyword",
+            "path_match": "headers.*"
+          }
+        },
+        {
+          "template_1": {
+            "mapping": {
+              "index": "not_analyzed",
+              "index_options": "docs",
+              "norms": {
+                "enabled": false
+              },
+              "type": "keyword"
+            },
+            "match_mapping_type": "keyword",
+            "match": "*"
+          }
+        }
+      ],
+      "properties": {
+        "SearchResults": {
+          "type": "integer",
+          "index_options": "docs",
+          "index": true
+        },
+        "Action": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "WasRegistered": {
+          "type": "boolean"
+        },
+        "LocationPermission": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "TakePicturePermission": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "WriteFileToDiskPermission": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "ReasonForReporting": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "NumberEvents": {
+          "type": "integer",
+          "index_options": "docs",
+          "index": true
+        },
+        "OfferPosition": {
+          "type": "integer",
+          "index_options": "docs",
+          "index": true
+        },
+        "PickupDate": {
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "NumberPackages": {
+          "type": "integer",
+          "index_options": "docs",
+          "index": true
+        },
+        "SizePackages": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "EditedPickupLocation": {
+          "type": "boolean"
+        },
+        "Picture_chosen_from": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "Error": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "sessionStart": {
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "activityName": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "fragmentName": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "dataModelVersion": {
+          "type": "double",
+          "index": true,
+          "index_options": "docs"
+        },
+        "fragmentStart": {
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "timestamp": {
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "sessionEnd": {
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "sessionDuration": {
+            "type": "long"
+        },
+        "fragmentEnd": {
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "fragmentDuration": {
+          "type": "long"
+        },
+        "requestTime": {
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "requestArrived": {
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "requestFlightTime": {
+          "type": "long"
+        },
+        "deviceID": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "deviceType": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "request_country": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "isTablet": {
+          "type": "boolean"
+        },
+        "isMobile": {
+          "type": "boolean"
+        },
+        "isDesktop": {
+          "type": "boolean"
+        }
+      }
+    },
+    "tests": {
+      "dynamic": true,
+      "_all": {
+        "enabled": "false"
+      },
+      "dynamic_templates": [
+        {
+          "headers": {
+            "mapping": {
+              "index": "yes",
+              "type": "keyword"
+            },
+            "match_mapping_type": "keyword",
+            "path_match": "headers.*"
+          }
+        },
+        {
+          "template_1": {
+            "mapping": {
+              "index": "not_analyzed",
+              "index_options": "docs",
+              "norms": {
+                "enabled": false
+              },
+              "type": "keyword"
+            },
+            "match_mapping_type": "keyword",
+            "match": "*"
+          }
+        }
+      ],
+      "properties": {
+        "headers": {
+          "enabled": true,
+          "type": "object"
+        },
+        "SearchResults": {
+          "type": "integer",
+          "index_options": "docs",
+          "index": true
+        },
+        "Action": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "WasRegistered": {
+          "type": "boolean"
+        },
+        "LocationPermission": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "TakePicturePermission": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "WriteFileToDiskPermission": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "ReasonForReporting": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "NumberEvents": {
+          "type": "integer",
+          "index_options": "docs",
+          "index": true
+        },
+        "OfferPosition": {
+          "type": "integer",
+          "index_options": "docs",
+          "index": true
+        },
+        "PickupDate": {
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "NumberPackages": {
+          "type": "integer",
+          "index_options": "docs",
+          "index": true
+        },
+        "SizePackages": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "EditedPickupLocation": {
+          "type": "boolean"
+        },
+        "Picture_chosen_from": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "Error": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "sessionStart": {
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "activityName": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "fragmentName": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "dataModelVersion": {
+          "type": "double",
+          "index": true,
+          "index_options": "docs"
+        },
+        "fragmentStart": {
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "timestamp": {
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "sessionEnd": {
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "sessionDuration": {
+            "type": "long"
+        },
+        "fragmentEnd": {
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "fragmentDuration": {
+          "type": "long"
+        },
+        "requestTime": {
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "requestArrived": {
+          "type": "date",
+          "index_options": "docs",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "requestFlightTime": {
+          "type": "long"
+        },
+        "deviceID": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "deviceType": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "request_country": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "isTablet": {
+          "type": "boolean"
+        },
+        "isMobile": {
+          "type": "boolean"
+        },
+        "isDesktop": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}
