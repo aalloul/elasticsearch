@@ -103,6 +103,9 @@ class ElasticsearchConfigSink:
             return True
 
 
+# Allow for filename to be passed as an argument. In which case,
+# we will only push that file to ES. Otherwise, both the logging
+# and offers templates will be updated.
 parser = argparse.ArgumentParser(description='ES configuration deployment argument parser')
 parser.add_argument('filename', nargs="?", help="This is the filename where the template can be found.")
 args = parser.parse_args()
