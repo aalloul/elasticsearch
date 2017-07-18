@@ -112,6 +112,7 @@ args = parser.parse_args()
 
 if args.filename:
     es_sink = ElasticsearchConfigSink(args.filename)
+    es_sink.update_template()
 else:
     es_sink_logging = ElasticsearchConfigSink("template_logging_v0.1.json")
     es_sink_logging.update_template()
