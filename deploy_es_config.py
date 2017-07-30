@@ -6,29 +6,16 @@ from requests_aws4auth import AWS4Auth
 import logging
 import argparse
 
-##########
-# Cluster settings
-
-ip = "https://search-shippy-es-f5eynamiumiunz5mrdxxmodksu.eu-west-1.es.amazonaws.com"
-theport = 80
-ACCESS_KEY = "AKIAIAOZRRLDX37HKW4Q"
-SECRET_KEY = "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"
-REGION = "eu-west-1"
-host = 'search-shippy-es-f5eynamiumiunz5mrdxxmodksu.eu-west-1.es.amazonaws.com'
-awsauth = AWS4Auth(ACCESS_KEY, SECRET_KEY, REGION, 'es')
-
-
-#########
-
 class ElasticsearchConfigSink:
     """
     This class is intended as a wrapper to ES.
         It initializes all required variables to allow for a direct
         connection to ES.
         It allows to deploy a new version of a given template
+        It also allows to delete an older version that is currently deployed
     """
 
-    def __init__(self, template_file_path):
+    def __init__(self, template_file_path, template_to_delete=None):
         # Logging
         self.loglevel = logging.INFO
         logging.basicConfig()
@@ -44,6 +31,8 @@ class ElasticsearchConfigSink:
 
         self.logger.debug("  Template file {} found".format(template_file_path))
         self.logger.debug("  Assuming template name is {}".format(self.template_name))
+
+        self.template_to_delete_name = template_to_delete
 
         # Connection information
         self.theport = 80
@@ -83,9 +72,15 @@ class ElasticsearchConfigSink:
             raise Exception("Elasticsearch is not reachable")
 
     def __check_and_clean_template(self):
+        if self.index_client.exists(self.template_to_delete_name):
+            self.logger.debug("  Template found in ES - Deleting it")
+            self.index_client.delete_template(self.template_to_delete_name)
+            return
+
         if self.index_client.exists_template(self.template_name):
             self.logger.debug("  Template found in ES - Deleting it")
             self.index_client.delete_template(self.template_name)
+            return
 
     def __get_template_content(self, file_path):
         with open(file_path) as f:
@@ -114,8 +109,8 @@ if args.filename:
     es_sink = ElasticsearchConfigSink(args.filename)
     es_sink.update_template()
 else:
-    es_sink_logging = ElasticsearchConfigSink("template_logging_v0.1.json")
+    es_sink_logging = ElasticsearchConfigSink("template_logging_v01.json")
     es_sink_logging.update_template()
 
-    # es_sink_offer = ElasticsearchConfigSink("template_offer_v0.json")
-    # es_sink_offer.update_template()
+    es_sink_offer = ElasticsearchConfigSink("template_offer_v01.json")
+    es_sink_offer.update_template()
