@@ -1,5 +1,5 @@
 {
-  "template": "offers-01-*",
+  "template": "offers-0.1-*",
   "settings": {
     "index": {
       "number_of_shards": "6",
