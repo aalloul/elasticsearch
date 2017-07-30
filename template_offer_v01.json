@@ -1,5 +1,5 @@
 {
-  "template": "offers-v01*",
+  "template": "offers-01-*",
   "settings": {
     "index": {
       "number_of_shards": "6",
@@ -60,6 +60,37 @@
           "index": true,
           "index_options": "docs"
         },
+        "deviceType":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "request_country": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "isTablet": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "isMobile": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "isDesktop": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "offerVersion": {
+          "type": "integer",
+          "index": true,
+          "index_options": "docs"
+        },
+
         "Firstname":{
           "type": "keyword",
           "index": true,
@@ -82,7 +113,7 @@
           "index_options": "docs"
         },
         "TravelBy":{
-          "type": "int",
+          "type": "integer",
           "index": true,
           "index_options": "docs"
         },
@@ -216,6 +247,37 @@
           "index": true,
           "index_options": "docs"
         },
+        "deviceType":{
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "request_country": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "isTablet": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "isMobile": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "isDesktop": {
+          "type": "keyword",
+          "index": true,
+          "index_options": "docs"
+        },
+        "offerVersion": {
+          "type": "integer",
+          "index": true,
+          "index_options": "docs"
+        },
+
         "Firstname":{
           "type": "keyword",
           "index": true,
@@ -238,7 +300,7 @@
           "index_options": "docs"
         },
         "TravelBy":{
-          "type": "int",
+          "type": "integer",
           "index": true,
           "index_options": "docs"
         },

@@ -3,6 +3,7 @@
 from elasticsearch import Elasticsearch, RequestsHttpConnection, client
 from json import load, loads, dump, dumps
 from requests_aws4auth import AWS4Auth
+import logging
 
 class MyElasticSearch:
     """
@@ -14,7 +15,12 @@ class MyElasticSearch:
     """
 
     def __init__(self):
-        # Connection information
+        # Logging
+        self.loglevel = logging.DEBUG
+        logging.basicConfig()
+        self.logger = logging.getLogger()
+        self.logger.setLevel(self.loglevel)
+
         self.theport = 80
         self.ACCESS_KEY = "AKIAIAOZRRLDX37HKW4Q"
         self.SECRET_KEY = "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"
